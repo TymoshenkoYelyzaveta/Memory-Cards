@@ -9,8 +9,8 @@ const answerEl = document.getElementById('answer');
 const addCardBtn = document.getElementById('add-card');
 const clearBtn = document.getElementById('clear');
 const addContainer = document.getElementById('add-container');
-
-
+const loadFromFile = document.getElementById('load');
+const empty = document.getElementById('empty');
 // Which card to show 
 let currentActiveCard = 0;
 
@@ -23,6 +23,11 @@ const cardsData = getCardsData();
 
 // Create all cards
 function createCards(){
+    if (cardsData.length === 0 ){
+        empty.style.display = 'block';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
     cardsData.forEach((data, index) => createCard(data, index));
 }
 
@@ -143,6 +148,9 @@ addCardBtn.addEventListener('click', ()=> {
         setCardsData(cardsData);
     }
 });
+
+
+
 
 
 // Clear cards from local storage and DOM
